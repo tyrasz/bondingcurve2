@@ -2,14 +2,15 @@
 pragma solidity ^0.8.13;
 
 import {Test, console} from "forge-std/Test.sol";
-import {Counter} from "../src/Counter.sol";
+import {BondingMarket} from "../src/BondingMarket.sol";
 
-contract CounterTest is Test {
+contract BondingTest is Test {
     Counter public counter;
+    uint256 public bettingEndTime;
+    string[] public optionNames;
 
     function setUp() public {
-        counter = new Counter();
-        counter.setNumber(0);
+        BondingMarket bondingMarket = new BondingMarket();
     }
 
     function test_Increment() public {

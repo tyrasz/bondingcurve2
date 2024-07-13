@@ -3,9 +3,11 @@ pragma solidity ^0.8.0;
 
 import {Script, console} from "forge-std/Script.sol";
 import {BondingMarket} from "../src/BondingMarket.sol";
+import {BondingMarketFactory} from "../src/BondingMarketFactory.sol";
 
 contract BondingMarketScript is Script {
     BondingMarket public bondingMarket;
+    BondingMarketFactory public bondingMarketFactory;
     uint256 public bettingEndTime;
     string[] public optionNames;
 
@@ -21,13 +23,15 @@ contract BondingMarketScript is Script {
 
     function run() public {
         vm.startBroadcast();
-
+        bondingMarketFactory = new BondingMarketFactory();
         // Deploy the BondingMarket contract with the computed bettingEndTime and optionNames
-        bondingMarket = new BondingMarket(
-            bettingEndTime,
-            optionNames,
-            address(this)
-        );
+        bondingMarketFactory.createMarket(bettingEndTime, optionNames);
+
+        // Retrieve the address of the newly created BondingMarket contract
+        BondingMarket[] memory marketsArray = bondingMarketFactory.getMarkets();
+        address marketAddress = address(marketsArray[marketsArray.length - 1]);
+        bondingMarket = BondingMarket(marketAddress);
+        console.log("Bonding Market address: ", marketAddress);
 
         vm.stopBroadcast();
     }

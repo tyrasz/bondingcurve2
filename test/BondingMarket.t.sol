@@ -20,7 +20,7 @@ contract BondingTest is Test {
         options[2] = "Option 3";
 
         // Deploy the BondingMarket contract with the computed bettingEndTime and optionNames
-        bondingMarket = new BondingMarket(bettingEndTime, options);
+        bondingMarket = new BondingMarket(bettingEndTime, options, msg.sender);
     }
 
     function testSetUp() public view {

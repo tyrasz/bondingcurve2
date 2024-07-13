@@ -23,7 +23,11 @@ contract BondingMarketScript is Script {
         vm.startBroadcast();
 
         // Deploy the BondingMarket contract with the computed bettingEndTime and optionNames
-        bondingMarket = new BondingMarket(bettingEndTime, optionNames);
+        bondingMarket = new BondingMarket(
+            bettingEndTime,
+            optionNames,
+            address(this)
+        );
 
         vm.stopBroadcast();
     }

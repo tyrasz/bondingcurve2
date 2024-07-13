@@ -30,8 +30,9 @@ contract BondingMarket is Ownable {
 
     constructor(
         uint256 _bettingEndTime,
-        string[] memory _optionNames
-    ) Ownable(msg.sender) {
+        string[] memory _optionNames,
+        address _owner
+    ) Ownable(_owner) {
         require(
             _optionNames.length > 0,
             "At least one option must be provided"
@@ -39,7 +40,7 @@ contract BondingMarket is Ownable {
 
         bettingEndTime = _bettingEndTime;
         eventEnded = false;
-        creator = msg.sender;
+        creator = _owner;
 
         for (uint256 i = 0; i < _optionNames.length; i++) {
             optionNames.push(_optionNames[i]);

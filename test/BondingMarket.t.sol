@@ -23,7 +23,7 @@ contract BondingTest is Test {
         bondingMarket = new BondingMarket(bettingEndTime, options);
     }
 
-    function testSetUp() public {
+    function testSetUp() public view {
         // Check that the betting end time is set correctly
         assertEq(bondingMarket.bettingEndTime(), bettingEndTime);
 

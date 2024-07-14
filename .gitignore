@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Graph CLI generated artifacts
 build/
 generated/
@@ -32,3 +33,19 @@ typechain-types
 
 # Hardhat files
 cache
+=======
+# Compiler files
+cache/
+out/
+
+# Ignores development broadcast logs
+!/broadcast
+/broadcast/*/31337/
+/broadcast/**/dry-run/
+
+# Docs
+docs/
+
+# Dotenv file
+.env
+>>>>>>> 6d10b28f3b84ce54a8b5f0fb782e5842580372a2
